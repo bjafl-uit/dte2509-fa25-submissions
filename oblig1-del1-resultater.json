@@ -1,0 +1,515 @@
+{
+  "metadata": {
+    "timestamp": "2025-01-17T21:02:05.020552",
+    "sql_file": "oblig1-del1-sp\u00f8rringer.sql",
+    "query_count": 13
+  },
+  "results": [
+    {
+      "query_id": 1,
+      "description": "Oppgave 1",
+      "query": "SELECT * FROM dept;",
+      "data": [
+        {
+          "deptno": 1,
+          "dname": "Accounting",
+          "loc": "New York"
+        },
+        {
+          "deptno": 2,
+          "dname": "Research",
+          "loc": "Dallas"
+        },
+        {
+          "deptno": 3,
+          "dname": "Sales",
+          "loc": "Chicago"
+        },
+        {
+          "deptno": 4,
+          "dname": "Operations",
+          "loc": "Boston"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 2,
+      "description": "Oppgave 2",
+      "query": "SELECT * FROM emp;",
+      "data": [
+        {
+          "empno": 7369,
+          "ename": "Smith",
+          "job": "Clerk",
+          "mgr": 7902.0,
+          "hiredate": "1980-12-17",
+          "sal": 800.0,
+          "comm": NaN,
+          "deptno": 2
+        },
+        {
+          "empno": 7499,
+          "ename": "Allen",
+          "job": "Salesman",
+          "mgr": 7698.0,
+          "hiredate": "1981-02-20",
+          "sal": 1600.0,
+          "comm": 300.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7521,
+          "ename": "Ward",
+          "job": "Salesman",
+          "mgr": 7698.0,
+          "hiredate": "NaT",
+          "sal": 1250.0,
+          "comm": 500.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7566,
+          "ename": "Jones",
+          "job": "Manager",
+          "mgr": 7839.0,
+          "hiredate": "NaT",
+          "sal": 2975.0,
+          "comm": NaN,
+          "deptno": 2
+        },
+        {
+          "empno": 7654,
+          "ename": "Martin",
+          "job": "Salesman",
+          "mgr": 7698.0,
+          "hiredate": "NaT",
+          "sal": 1250.0,
+          "comm": 1400.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7698,
+          "ename": "Blake",
+          "job": "Manager",
+          "mgr": 7839.0,
+          "hiredate": "NaT",
+          "sal": 2850.0,
+          "comm": NaN,
+          "deptno": 3
+        },
+        {
+          "empno": 7782,
+          "ename": "Clark",
+          "job": "Manager",
+          "mgr": 7839.0,
+          "hiredate": "NaT",
+          "sal": 2450.0,
+          "comm": NaN,
+          "deptno": 1
+        },
+        {
+          "empno": 7788,
+          "ename": "Scott",
+          "job": "Analyst",
+          "mgr": 7566.0,
+          "hiredate": "NaT",
+          "sal": 3000.0,
+          "comm": NaN,
+          "deptno": 2
+        },
+        {
+          "empno": 7839,
+          "ename": "King",
+          "job": "President",
+          "mgr": NaN,
+          "hiredate": "NaT",
+          "sal": 5000.0,
+          "comm": NaN,
+          "deptno": 1
+        },
+        {
+          "empno": 7844,
+          "ename": "Turner",
+          "job": "Salesman",
+          "mgr": 7698.0,
+          "hiredate": "NaT",
+          "sal": 1500.0,
+          "comm": 0.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7876,
+          "ename": "Adams",
+          "job": "Clerk",
+          "mgr": 7788.0,
+          "hiredate": "NaT",
+          "sal": 1100.0,
+          "comm": NaN,
+          "deptno": 2
+        },
+        {
+          "empno": 7900,
+          "ename": "James",
+          "job": "Clerk",
+          "mgr": 7698.0,
+          "hiredate": "NaT",
+          "sal": 950.0,
+          "comm": NaN,
+          "deptno": 3
+        },
+        {
+          "empno": 7902,
+          "ename": "Ford",
+          "job": "Analyst",
+          "mgr": 7566.0,
+          "hiredate": "NaT",
+          "sal": 3000.0,
+          "comm": NaN,
+          "deptno": 2
+        },
+        {
+          "empno": 7934,
+          "ename": "Miller",
+          "job": "Clerk",
+          "mgr": 7782.0,
+          "hiredate": "NaT",
+          "sal": 1300.0,
+          "comm": NaN,
+          "deptno": 1
+        }
+      ],
+      "row_count": 14
+    },
+    {
+      "query_id": 3,
+      "description": "Oppgave 3",
+      "query": "SELECT job FROM emp;",
+      "data": [
+        {
+          "job": "Clerk"
+        },
+        {
+          "job": "Salesman"
+        },
+        {
+          "job": "Salesman"
+        },
+        {
+          "job": "Manager"
+        },
+        {
+          "job": "Salesman"
+        },
+        {
+          "job": "Manager"
+        },
+        {
+          "job": "Manager"
+        },
+        {
+          "job": "Analyst"
+        },
+        {
+          "job": "President"
+        },
+        {
+          "job": "Salesman"
+        },
+        {
+          "job": "Clerk"
+        },
+        {
+          "job": "Clerk"
+        },
+        {
+          "job": "Analyst"
+        },
+        {
+          "job": "Clerk"
+        }
+      ],
+      "row_count": 14
+    },
+    {
+      "query_id": 4,
+      "description": "Oppgave 4",
+      "query": "SELECT DISTINCT job FROM emp;",
+      "data": [
+        {
+          "job": "Clerk"
+        },
+        {
+          "job": "Salesman"
+        },
+        {
+          "job": "Manager"
+        },
+        {
+          "job": "Analyst"
+        },
+        {
+          "job": "President"
+        }
+      ],
+      "row_count": 5
+    },
+    {
+      "query_id": 5,
+      "description": "Oppgave 5",
+      "query": "SELECT dname as Department FROM dept;",
+      "data": [
+        {
+          "Department": "Accounting"
+        },
+        {
+          "Department": "Research"
+        },
+        {
+          "Department": "Sales"
+        },
+        {
+          "Department": "Operations"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 6,
+      "description": "Oppgave 6",
+      "query": "SELECT emp.* FROM emp JOIN dept ON emp.deptno = dept.deptno WHERE dept.dname = 'Sales';",
+      "data": [
+        {
+          "empno": 7499,
+          "ename": "Allen",
+          "job": "Salesman",
+          "mgr": 7698,
+          "hiredate": "1981-02-20",
+          "sal": 1600.0,
+          "comm": 300.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7521,
+          "ename": "Ward",
+          "job": "Salesman",
+          "mgr": 7698,
+          "hiredate": "NaT",
+          "sal": 1250.0,
+          "comm": 500.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7654,
+          "ename": "Martin",
+          "job": "Salesman",
+          "mgr": 7698,
+          "hiredate": "NaT",
+          "sal": 1250.0,
+          "comm": 1400.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7698,
+          "ename": "Blake",
+          "job": "Manager",
+          "mgr": 7839,
+          "hiredate": "NaT",
+          "sal": 2850.0,
+          "comm": NaN,
+          "deptno": 3
+        },
+        {
+          "empno": 7844,
+          "ename": "Turner",
+          "job": "Salesman",
+          "mgr": 7698,
+          "hiredate": "NaT",
+          "sal": 1500.0,
+          "comm": 0.0,
+          "deptno": 3
+        },
+        {
+          "empno": 7900,
+          "ename": "James",
+          "job": "Clerk",
+          "mgr": 7698,
+          "hiredate": "NaT",
+          "sal": 950.0,
+          "comm": NaN,
+          "deptno": 3
+        }
+      ],
+      "row_count": 6
+    },
+    {
+      "query_id": 7,
+      "description": "Oppgave 7",
+      "query": "SELECT ename, empno, deptno FROM emp WHERE job = 'Clerk';",
+      "data": [
+        {
+          "ename": "Smith",
+          "empno": 7369,
+          "deptno": 2
+        },
+        {
+          "ename": "Adams",
+          "empno": 7876,
+          "deptno": 2
+        },
+        {
+          "ename": "James",
+          "empno": 7900,
+          "deptno": 3
+        },
+        {
+          "ename": "Miller",
+          "empno": 7934,
+          "deptno": 1
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 8,
+      "description": "Oppgave 8",
+      "query": "SELECT dname, deptno FROM dept WHERE deptno > 2;",
+      "data": [
+        {
+          "dname": "Sales",
+          "deptno": 3
+        },
+        {
+          "dname": "Operations",
+          "deptno": 4
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 9,
+      "description": "Oppgave 9",
+      "query": "SELECT ename, sal, comm FROM emp WHERE comm > sal;",
+      "data": [
+        {
+          "ename": "Martin",
+          "sal": 1250.0,
+          "comm": 1400.0
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 10,
+      "description": "Oppgave 10",
+      "query": "SELECT ename, sal, deptno FROM emp WHERE job = 'Salesman'      AND deptno = 3      AND sal >= 1500;",
+      "data": [
+        {
+          "ename": "Allen",
+          "sal": 1600.0,
+          "deptno": 3
+        },
+        {
+          "ename": "Turner",
+          "sal": 1500.0,
+          "deptno": 3
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 11,
+      "description": "Oppgave 11",
+      "query": "SELECT ename, sal, job FROM emp WHERE job = 'Manager' OR sal > 3000;",
+      "data": [
+        {
+          "ename": "Jones",
+          "sal": 2975.0,
+          "job": "Manager"
+        },
+        {
+          "ename": "Blake",
+          "sal": 2850.0,
+          "job": "Manager"
+        },
+        {
+          "ename": "Clark",
+          "sal": 2450.0,
+          "job": "Manager"
+        },
+        {
+          "ename": "King",
+          "sal": 5000.0,
+          "job": "President"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 12,
+      "description": "Oppgave 12",
+      "query": "SELECT * FROM emp WHERE job = 'Manager' OR (deptno = 1 AND job = 'Clerk');",
+      "data": [
+        {
+          "empno": 7566,
+          "ename": "Jones",
+          "job": "Manager",
+          "mgr": 7839,
+          "hiredate": null,
+          "sal": 2975.0,
+          "comm": null,
+          "deptno": 2
+        },
+        {
+          "empno": 7698,
+          "ename": "Blake",
+          "job": "Manager",
+          "mgr": 7839,
+          "hiredate": null,
+          "sal": 2850.0,
+          "comm": null,
+          "deptno": 3
+        },
+        {
+          "empno": 7782,
+          "ename": "Clark",
+          "job": "Manager",
+          "mgr": 7839,
+          "hiredate": null,
+          "sal": 2450.0,
+          "comm": null,
+          "deptno": 1
+        },
+        {
+          "empno": 7934,
+          "ename": "Miller",
+          "job": "Clerk",
+          "mgr": 7782,
+          "hiredate": null,
+          "sal": 1300.0,
+          "comm": null,
+          "deptno": 1
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 13,
+      "description": "Oppgave 13",
+      "query": "SELECT ename, job, deptno FROM emp WHERE job = 'Manager' AND deptno <> 3;",
+      "data": [
+        {
+          "ename": "Jones",
+          "job": "Manager",
+          "deptno": 2
+        },
+        {
+          "ename": "Clark",
+          "job": "Manager",
+          "deptno": 1
+        }
+      ],
+      "row_count": 2
+    }
+  ]
+}

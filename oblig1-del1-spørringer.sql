@@ -4,9 +4,6 @@
 -- Bjarte Flø Lode
 -- 17.01.2025
 
-
-USE EmployeeDB;
-
 -- Oppgave 1
 SELECT * FROM dept;
 
