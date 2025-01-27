@@ -1,14 +1,6 @@
-# DTE2509 - Oblig 1 - Del 1 - Spørringer
-
-> UiT Norges arktiske universitet
->
-> Bjarte Flø Lode
-> 17.01.2025
->
+> Time: 2025-01-26T13:25:35.925447
 > File: oblig1-del1-spørringer.sql
 > Query count: 13
-
-Resultater fra kjørte spørringer.
 
 ## Oppgave 1
 
