@@ -1,0 +1,326 @@
+{
+  "metadata": {
+    "timestamp": "2025-02-02T16:42:33.808835",
+    "sql_file": "/home/bjafl/dev/dte2509-fa25-submissions/oblig-2/oblig2-del1-sp\u00f8rringer.sql",
+    "query_count": 13
+  },
+  "results": [
+    {
+      "query_id": 1,
+      "description": "Oppgave 1",
+      "query": "select ename, sal, comm from emp\nwhere comm > sal * 0.25;",
+      "data": [
+        {
+          "ename": "Ward",
+          "sal": 1250.0,
+          "comm": 500.0
+        },
+        {
+          "ename": "Martin",
+          "sal": 1250.0,
+          "comm": 1400.0
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 2,
+      "description": "Oppgave 2",
+      "query": "select ename, (comm / sal) as \"comm/sal\", comm, sal from emp\nwhere job = 'Salesman'\norder by comm/sal desc;",
+      "data": [
+        {
+          "ename": "Martin",
+          "comm/sal": 1.12,
+          "comm": 1400.0,
+          "sal": 1250.0
+        },
+        {
+          "ename": "Ward",
+          "comm/sal": 0.4,
+          "comm": 500.0,
+          "sal": 1250.0
+        },
+        {
+          "ename": "Allen",
+          "comm/sal": 0.1875,
+          "comm": 300.0,
+          "sal": 1600.0
+        },
+        {
+          "ename": "Turner",
+          "comm/sal": 0.0,
+          "comm": 0.0,
+          "sal": 1500.0
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 3,
+      "description": "Oppgave 3",
+      "query": "select ename, sal, comm, 12 * (sal+comm) as sal_year from emp\nwhere job = 'Salesman';",
+      "data": [
+        {
+          "ename": "Allen",
+          "sal": 1600.0,
+          "comm": 300.0,
+          "sal_year": 22800.0
+        },
+        {
+          "ename": "Ward",
+          "sal": 1250.0,
+          "comm": 500.0,
+          "sal_year": 21000.0
+        },
+        {
+          "ename": "Martin",
+          "sal": 1250.0,
+          "comm": 1400.0,
+          "sal_year": 31800.0
+        },
+        {
+          "ename": "Turner",
+          "sal": 1500.0,
+          "comm": 0.0,
+          "sal_year": 18000.0
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 4,
+      "description": "Oppgave 4",
+      "query": "select avg(sal) as avg_sal from emp\nwhere job = 'Clerk';",
+      "data": [
+        {
+          "avg_sal": 1037.5
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 5,
+      "description": "Oppgave 5",
+      "query": "select sum(sal) as tot_salesmen_sal, sum(comm) as tot_salesmen_comm from emp\nwhere job = 'Salesman';",
+      "data": [
+        {
+          "tot_salesmen_sal": 5600.0,
+          "tot_salesmen_comm": 2200.0
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 6,
+      "description": "Oppgave 6",
+      "query": "select count(comm) as count_has_comm from emp\nwhere comm > 0;",
+      "data": [
+        {
+          "count_has_comm": 3
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 7,
+      "description": "Oppgave 7",
+      "query": "select count(distinct job) as distinct_job_dept_3 from emp\nwhere deptno = 3;",
+      "data": [
+        {
+          "distinct_job_dept_3": 3
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 8,
+      "description": "Oppgave 8",
+      "query": "select count(*) as emp_count_dept_3 from emp\nwhere deptno = 3;",
+      "data": [
+        {
+          "emp_count_dept_3": 6
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 9,
+      "description": "Oppgave 9",
+      "query": "select deptno, round(avg(sal), 0) as avg_sal from emp \ngroup by deptno;",
+      "data": [
+        {
+          "deptno": 2,
+          "avg_sal": 2175.0
+        },
+        {
+          "deptno": 3,
+          "avg_sal": 1567.0
+        },
+        {
+          "deptno": 1,
+          "avg_sal": 2917.0
+        }
+      ],
+      "row_count": 3
+    },
+    {
+      "query_id": 10,
+      "description": "Oppgave 10",
+      "query": "select concat(dname, ' - ', loc) as Departments from dept;",
+      "data": [
+        {
+          "Departments": "Accounting - New York"
+        },
+        {
+          "Departments": "Research - Dallas"
+        },
+        {
+          "Departments": "Sales - Chicago"
+        },
+        {
+          "Departments": "Operations - Boston"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 11,
+      "description": "Oppgave 11",
+      "query": "select \n    ename, \n    job,\n    case job \n        when 'Clerk' then 1\n        when 'Salesman' then 2\n        when 'Manager' then 3\n        when 'Analyst' then 4\n        when 'President' then 5\n    end as job_class\nfrom emp;",
+      "data": [
+        {
+          "ename": "Smith",
+          "job": "Clerk",
+          "job_class": 1
+        },
+        {
+          "ename": "Allen",
+          "job": "Salesman",
+          "job_class": 2
+        },
+        {
+          "ename": "Ward",
+          "job": "Salesman",
+          "job_class": 2
+        },
+        {
+          "ename": "Jones",
+          "job": "Manager",
+          "job_class": 3
+        },
+        {
+          "ename": "Martin",
+          "job": "Salesman",
+          "job_class": 2
+        },
+        {
+          "ename": "Blake",
+          "job": "Manager",
+          "job_class": 3
+        },
+        {
+          "ename": "Clark",
+          "job": "Manager",
+          "job_class": 3
+        },
+        {
+          "ename": "Scott",
+          "job": "Analyst",
+          "job_class": 4
+        },
+        {
+          "ename": "King",
+          "job": "President",
+          "job_class": 5
+        },
+        {
+          "ename": "Turner",
+          "job": "Salesman",
+          "job_class": 2
+        },
+        {
+          "ename": "Adams",
+          "job": "Clerk",
+          "job_class": 1
+        },
+        {
+          "ename": "James",
+          "job": "Clerk",
+          "job_class": 1
+        },
+        {
+          "ename": "Ford",
+          "job": "Analyst",
+          "job_class": 4
+        },
+        {
+          "ename": "Miller",
+          "job": "Clerk",
+          "job_class": 1
+        }
+      ],
+      "row_count": 14
+    },
+    {
+      "query_id": 12,
+      "description": "Oppgave 12",
+      "query": "select substr(ename, 2) as name_part from emp;",
+      "data": [
+        {
+          "name_part": "mith"
+        },
+        {
+          "name_part": "llen"
+        },
+        {
+          "name_part": "ard"
+        },
+        {
+          "name_part": "ones"
+        },
+        {
+          "name_part": "artin"
+        },
+        {
+          "name_part": "lake"
+        },
+        {
+          "name_part": "lark"
+        },
+        {
+          "name_part": "cott"
+        },
+        {
+          "name_part": "ing"
+        },
+        {
+          "name_part": "urner"
+        },
+        {
+          "name_part": "dams"
+        },
+        {
+          "name_part": "ames"
+        },
+        {
+          "name_part": "ord"
+        },
+        {
+          "name_part": "iller"
+        }
+      ],
+      "row_count": 14
+    },
+    {
+      "query_id": 13,
+      "description": "Oppgave 13",
+      "query": "set lc_time_names = 'no_NO';\nselect date_format(curdate(), '%e. %M %Y') as date;",
+      "data": [
+        {
+          "date": "2. februar 2025"
+        }
+      ],
+      "row_count": 1
+    }
+  ]
+}

@@ -44,7 +44,7 @@ class SQLExecutor:
                 else:
                     query_lines.append(line)
             
-            query = ' '.join(query_lines).strip()
+            query = '\n'.join(query_lines).strip()
             if query:  # Only add if there's a query
                 queries.append({
                     'query': query,
@@ -55,6 +55,14 @@ class SQLExecutor:
 
     def execute_query(self, query: str):
         """Execute a single query and return results"""
+        query_parts = query.split(';')
+        query_set = [q.strip()+';' for q in query_parts if q.strip().lower().startswith('set')]
+        query_select = [q.strip()+';' for q in query_parts if q.strip().lower().startswith('select')]
+        if len(query_set) > 0:
+            with self.engine.connect() as conn:
+                for q in query_set:
+                    conn.execute(sa.text(q))
+        query = query_select[0]
         try:
             escaped_query = query.replace('%', '%%')
             df = pd.read_sql_query(escaped_query, self.engine, )
@@ -103,7 +111,16 @@ class SQLExecutor:
         # Save results to JSON file
         with open(output_file, 'w') as f:
             json.dump(results, f, indent=2)
-
+    def _format_value(self, value):
+        if isinstance(value, str):
+            try:
+                num = float(value)
+                if num.is_integer():
+                    return str(int(num))
+                return f'{num:.2f}'
+            except ValueError:
+                pass
+        return str(value)
     def query_results_to_md(self, query_results,  output_file, metadata):
         """
         """
@@ -118,14 +135,16 @@ class SQLExecutor:
             df = df.astype(str)
 
             md_table = f"## {query_info['description']}\n\n"
-            md_table += f"SQL Query:\n\n```sql\n{query_info['query']}\n```\n\n"
+            query = query_info['query']#.replace('\n', '\n\n')
+            md_table += f"SQL Query:\n\n```sql\n{query}\n```\n\n"
 
             header = '| ' + ' | '.join(df.columns) + ' |'
             align = '| ' + ' | '.join(['---' for _ in df.columns]) + ' |'
             
             rows = []
             for _, row in df.iterrows():
-                rows.append('| ' + ' | '.join(row) + ' |')
+                formatted_row = [self._format_value(value) for value in row]
+                rows.append('| ' + ' | '.join(formatted_row) + ' |')
             
             md_table += '\n'.join([header, align] + rows)
             md_table += '\n\n'
@@ -139,14 +158,14 @@ class SQLExecutor:
 if __name__ == "__main__":
 
     connection_string = "mysql+pymysql://dte2509:badpwd@localhost:3306/EmployeeDB"
-    sql_files = ["oblig1-del1-spørringer.sql", "oblig1-del2-spørringer.sql"]
-    output_filenames = ["oblig1-del1-resultater", "oblig1-del2-resultater"]
+    sql_files = ["oblig-2/oblig2-del1-spørringer.sql"]
+    output_filenames = ["oblig2-del1-resultater"]
     # sql_files = ["oblig1-del2-spørringer.sql"]
     # output_filenames = ["oblig1-del2-resultater"]
     extensions = ['json', 'md']
     save_dir = Path('results')
     
-    input_output_pairs = {sql: [save_dir / f"{filename}.{ext}" for ext in extensions] for sql, filename in zip(sql_files, output_filenames)}
+    input_output_pairs = {sql: [save_dir / f"{filename}.{ext}" for ext in extensions] for sql, filename in zip(sql_files, output_filenames)} | {Path(sql).absolute(): [save_dir / f"{filename}.{ext}" for ext in extensions] for sql, filename in zip(sql_files, output_filenames)}
     
     print("Connecting to database...", end=' ')
     try:
@@ -165,7 +184,7 @@ if __name__ == "__main__":
             print(f"{sql_file} -> {output_file}...", end=' ')
             try:
                 ext = output_file.suffix[1:]
-                executor.process_sql_file(sql_file, str(output_file), format=ext)
+                executor.process_sql_file(str(sql_file), str(output_file), format=ext)
             except Exception as e:
                 print("ERROR")
                 print(f"Could not process SQL file: {e}")
