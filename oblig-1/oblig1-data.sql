@@ -1,4 +1,5 @@
 
+create database if not exists EmployeeDB;
 USE EmployeeDB;
 
 --

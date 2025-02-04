@@ -49,3 +49,43 @@ select ename, job, deptno, sal from emp
         select job, sal from emp
             where ename = 'Ford'
     );
+
+-- Opptage 8
+
+select ename, job, deptno, sal from emp 
+    where job = (
+        select job from emp
+            where ename = 'Jones'
+    )
+    or sal >= (
+        select sal from emp
+            where ename = 'Ford'
+    )
+    order by job, sal;
+
+-- Oppgave 9
+select ename, job from emp
+    where job in (
+        select job from emp
+            where deptno = (
+                select deptno from dept
+                    where dname = 'Sales'
+            )
+    )
+    and deptno = 1
+    order by ename;
+
+-- Oppgave 10
+select ename, job, sal from emp
+    where sal = (
+        select sal from emp
+            where ename = 'Scott'
+    )
+union
+select ename, job, sal from emp
+    where sal = (
+        select sal from emp
+            where ename = 'Ward'
+    );
+
+-- Oppgave 11
