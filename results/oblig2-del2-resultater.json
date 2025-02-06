@@ -1,0 +1,466 @@
+{
+  "metadata": {
+    "timestamp": "2025-02-05T17:59:56.071717",
+    "sql_file": "/home/bjafl/dev/dte2509-fa25-submissions/oblig-2/oblig2-del2-sp\u00f8rringer.sql",
+    "query_count": 15
+  },
+  "results": [
+    {
+      "query_id": 2,
+      "description": "",
+      "query": "select date_format(now(), '%Y-%m-%dT%H:%i:%s+01') \n    as iso8601_current;",
+      "data": [
+        {
+          "iso8601_current": "2025-02-05T17:59:56+01"
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 3,
+      "description": "Oppgave 2",
+      "query": "select \n    ename, \n    sal, \n    comm, \n    job \nfrom emp\nwhere coalesce(comm, 0) = 0;",
+      "data": [
+        {
+          "ename": "Smith",
+          "sal": 800.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "Jones",
+          "sal": 2975.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Blake",
+          "sal": 2850.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Clark",
+          "sal": 2450.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Scott",
+          "sal": 3000.0,
+          "comm": NaN,
+          "job": "Analyst"
+        },
+        {
+          "ename": "King",
+          "sal": 5000.0,
+          "comm": NaN,
+          "job": "President"
+        },
+        {
+          "ename": "Turner",
+          "sal": 1500.0,
+          "comm": 0.0,
+          "job": "Salesman"
+        },
+        {
+          "ename": "Adams",
+          "sal": 1100.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "James",
+          "sal": 950.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "Ford",
+          "sal": 3000.0,
+          "comm": NaN,
+          "job": "Analyst"
+        },
+        {
+          "ename": "Miller",
+          "sal": 1300.0,
+          "comm": NaN,
+          "job": "Clerk"
+        }
+      ],
+      "row_count": 11
+    },
+    {
+      "query_id": 5,
+      "description": "Oppgave 3",
+      "query": "select ename, sal, comm, job \nfrom emp\nwhere coalesce(comm, 0) <> 500;",
+      "data": [
+        {
+          "ename": "Smith",
+          "sal": 800.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "Allen",
+          "sal": 1600.0,
+          "comm": 300.0,
+          "job": "Salesman"
+        },
+        {
+          "ename": "Jones",
+          "sal": 2975.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Martin",
+          "sal": 1250.0,
+          "comm": 1400.0,
+          "job": "Salesman"
+        },
+        {
+          "ename": "Blake",
+          "sal": 2850.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Clark",
+          "sal": 2450.0,
+          "comm": NaN,
+          "job": "Manager"
+        },
+        {
+          "ename": "Scott",
+          "sal": 3000.0,
+          "comm": NaN,
+          "job": "Analyst"
+        },
+        {
+          "ename": "King",
+          "sal": 5000.0,
+          "comm": NaN,
+          "job": "President"
+        },
+        {
+          "ename": "Turner",
+          "sal": 1500.0,
+          "comm": 0.0,
+          "job": "Salesman"
+        },
+        {
+          "ename": "Adams",
+          "sal": 1100.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "James",
+          "sal": 950.0,
+          "comm": NaN,
+          "job": "Clerk"
+        },
+        {
+          "ename": "Ford",
+          "sal": 3000.0,
+          "comm": NaN,
+          "job": "Analyst"
+        },
+        {
+          "ename": "Miller",
+          "sal": 1300.0,
+          "comm": NaN,
+          "job": "Clerk"
+        }
+      ],
+      "row_count": 13
+    },
+    {
+      "query_id": 7,
+      "description": "Oppgave 4",
+      "query": "select ename, job \nfrom emp\nwhere job = (\n    select job \n    from emp \n    where ename = 'Jones'\n);",
+      "data": [
+        {
+          "ename": "Jones",
+          "job": "Manager"
+        },
+        {
+          "ename": "Blake",
+          "job": "Manager"
+        },
+        {
+          "ename": "Clark",
+          "job": "Manager"
+        }
+      ],
+      "row_count": 3
+    },
+    {
+      "query_id": 8,
+      "description": "Oppgave 5",
+      "query": "select ename, job \nfrom emp\nwhere \n    job in (\n        select job \n        from emp \n        where deptno = 3\n    )\n    and deptno = 1;",
+      "data": [
+        {
+          "ename": "Clark",
+          "job": "Manager"
+        },
+        {
+          "ename": "Miller",
+          "job": "Clerk"
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 9,
+      "description": "Oppgave 6",
+      "query": "select ename, job \nfrom emp\nwhere \n    job not in (\n        select job \n        from emp \n        where deptno = 3\n    )\n    and deptno = 1;",
+      "data": [
+        {
+          "ename": "King",
+          "job": "President"
+        }
+      ],
+      "row_count": 1
+    },
+    {
+      "query_id": 10,
+      "description": "",
+      "query": "select \n    ename,\n    job, \n    deptno, \n    sal \nfrom emp\nwhere (job, sal) in (\n    select job, sal \n    from emp\n    where ename = 'Ford'\n);",
+      "data": [
+        {
+          "ename": "Scott",
+          "job": "Analyst",
+          "deptno": 2,
+          "sal": 3000.0
+        },
+        {
+          "ename": "Ford",
+          "job": "Analyst",
+          "deptno": 2,
+          "sal": 3000.0
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 11,
+      "description": "",
+      "query": "select \n    ename, \n    job, \n    deptno, \n    sal \nfrom emp \nwhere \n    job = (\n        select job\n        from emp\n        where ename = 'Jones'\n    )\n    or sal >= (\n        select sal \n        from emp\n        where ename = 'Ford'\n    )\norder by job, sal;",
+      "data": [
+        {
+          "ename": "Scott",
+          "job": "Analyst",
+          "deptno": 2,
+          "sal": 3000.0
+        },
+        {
+          "ename": "Ford",
+          "job": "Analyst",
+          "deptno": 2,
+          "sal": 3000.0
+        },
+        {
+          "ename": "Clark",
+          "job": "Manager",
+          "deptno": 1,
+          "sal": 2450.0
+        },
+        {
+          "ename": "Blake",
+          "job": "Manager",
+          "deptno": 3,
+          "sal": 2850.0
+        },
+        {
+          "ename": "Jones",
+          "job": "Manager",
+          "deptno": 2,
+          "sal": 2975.0
+        },
+        {
+          "ename": "King",
+          "job": "President",
+          "deptno": 1,
+          "sal": 5000.0
+        }
+      ],
+      "row_count": 6
+    },
+    {
+      "query_id": 12,
+      "description": "Oppgave 9",
+      "query": "select ename, job \nfrom emp\nwhere \n    job in (\n        select job \n        from emp\n        where deptno = (\n            select deptno \n            from dept\n            where dname = 'Sales'\n        )\n    )\n    and deptno = 1\norder by ename;",
+      "data": [
+        {
+          "ename": "Clark",
+          "job": "Manager"
+        },
+        {
+          "ename": "Miller",
+          "job": "Clerk"
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "query_id": 13,
+      "description": "Oppgave 10",
+      "query": "select ename, job, sal \nfrom emp\nwhere sal = (\n    select sal \n    from emp\n    where ename = 'Scott'\n)\nunion\nselect ename, job, sal \nfrom emp\nwhere sal = (\n    select sal\n    from emp\n    where ename = 'Ward'\n);",
+      "data": [
+        {
+          "ename": "Scott",
+          "job": "Analyst",
+          "sal": 3000.0
+        },
+        {
+          "ename": "Ford",
+          "job": "Analyst",
+          "sal": 3000.0
+        },
+        {
+          "ename": "Ward",
+          "job": "Salesman",
+          "sal": 1250.0
+        },
+        {
+          "ename": "Martin",
+          "job": "Salesman",
+          "sal": 1250.0
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "query_id": 14,
+      "description": "Oppgave 11",
+      "query": "select ename, job \nfrom emp\nwhere job in (\n    select job \n    from emp\n    where deptno = (\n        select deptno \n        from dept\n        where loc = 'Chicago'\n    )\n)\norder by job;",
+      "data": [
+        {
+          "ename": "Smith",
+          "job": "Clerk"
+        },
+        {
+          "ename": "Adams",
+          "job": "Clerk"
+        },
+        {
+          "ename": "James",
+          "job": "Clerk"
+        },
+        {
+          "ename": "Miller",
+          "job": "Clerk"
+        },
+        {
+          "ename": "Jones",
+          "job": "Manager"
+        },
+        {
+          "ename": "Blake",
+          "job": "Manager"
+        },
+        {
+          "ename": "Clark",
+          "job": "Manager"
+        },
+        {
+          "ename": "Allen",
+          "job": "Salesman"
+        },
+        {
+          "ename": "Ward",
+          "job": "Salesman"
+        },
+        {
+          "ename": "Martin",
+          "job": "Salesman"
+        },
+        {
+          "ename": "Turner",
+          "job": "Salesman"
+        }
+      ],
+      "row_count": 11
+    },
+    {
+      "query_id": 15,
+      "description": "Oppgave 12",
+      "query": "select \n    ename, \n    sal, \n    (sal/tot_sal)*100 as sal_percent\nfrom (\n    select \n        ename, \n        sal, \n        sum(sal) over() as tot_sal\n    from emp\n    group by ename, sal\n) as emp_sal\norder by sal_percent;",
+      "data": [
+        {
+          "ename": "Smith",
+          "sal": 800.0,
+          "sal_percent": 2.756244616709733
+        },
+        {
+          "ename": "James",
+          "sal": 950.0,
+          "sal_percent": 3.273040482342808
+        },
+        {
+          "ename": "Adams",
+          "sal": 1100.0,
+          "sal_percent": 3.7898363479758825
+        },
+        {
+          "ename": "Ward",
+          "sal": 1250.0,
+          "sal_percent": 4.3066322136089585
+        },
+        {
+          "ename": "Martin",
+          "sal": 1250.0,
+          "sal_percent": 4.3066322136089585
+        },
+        {
+          "ename": "Miller",
+          "sal": 1300.0,
+          "sal_percent": 4.478897502153316
+        },
+        {
+          "ename": "Turner",
+          "sal": 1500.0,
+          "sal_percent": 5.167958656330749
+        },
+        {
+          "ename": "Allen",
+          "sal": 1600.0,
+          "sal_percent": 5.512489233419466
+        },
+        {
+          "ename": "Clark",
+          "sal": 2450.0,
+          "sal_percent": 8.440999138673558
+        },
+        {
+          "ename": "Blake",
+          "sal": 2850.0,
+          "sal_percent": 9.819121447028424
+        },
+        {
+          "ename": "Jones",
+          "sal": 2975.0,
+          "sal_percent": 10.249784668389319
+        },
+        {
+          "ename": "Scott",
+          "sal": 3000.0,
+          "sal_percent": 10.335917312661499
+        },
+        {
+          "ename": "Ford",
+          "sal": 3000.0,
+          "sal_percent": 10.335917312661499
+        },
+        {
+          "ename": "King",
+          "sal": 5000.0,
+          "sal_percent": 17.226528854435834
+        }
+      ],
+      "row_count": 14
+    }
+  ]
+}

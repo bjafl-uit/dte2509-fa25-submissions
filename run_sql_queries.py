@@ -56,12 +56,14 @@ class SQLExecutor:
     def execute_query(self, query: str):
         """Execute a single query and return results"""
         query_parts = query.split(';')
-        query_set = [q.strip()+';' for q in query_parts if q.strip().lower().startswith('set')]
+        query_set_use = [q.strip()+';' for q in query_parts if q.strip().lower().startswith(('set', 'use'))]
         query_select = [q.strip()+';' for q in query_parts if q.strip().lower().startswith('select')]
-        if len(query_set) > 0:
+        if len(query_set_use) > 0:
             with self.engine.connect() as conn:
-                for q in query_set:
+                for q in query_set_use:
                     conn.execute(sa.text(q))
+        if len(query_select) == 0:
+            return None
         query = query_select[0]
         try:
             escaped_query = query.replace('%', '%%')
@@ -99,6 +101,8 @@ class SQLExecutor:
         results = {'metadata': {**metadata}, 'results': []}
         
         for i, [query_info, query_data] in enumerate(query_results, 1):
+            if query_data is None:
+                continue
             query_result = query_data.to_dict(orient='records')
             results['results'].append({
                 'query_id': i,
@@ -129,9 +133,10 @@ class SQLExecutor:
         results += f'> Query count: {metadata['query_count']}\n\n'
         
         for i, [query_info, query_data] in enumerate(query_results, 1):
-
+            if query_data is None:
+                continue
             df = query_data.copy()
-            df = df.fillna('')
+            df = df.fillna('(NULL)')
             df = df.astype(str)
 
             md_table = f"## {query_info['description']}\n\n"
@@ -158,8 +163,8 @@ class SQLExecutor:
 if __name__ == "__main__":
 
     connection_string = "mysql+pymysql://dte2509:badpwd@localhost:3306/EmployeeDB"
-    sql_files = ["oblig-2/oblig2-del1-spørringer.sql"]
-    output_filenames = ["oblig2-del1-resultater"]
+    sql_files = ["oblig-2/oblig2-del2-spørringer.sql"]
+    output_filenames = ["oblig2-del2-resultater"]
     # sql_files = ["oblig1-del2-spørringer.sql"]
     # output_filenames = ["oblig1-del2-resultater"]
     extensions = ['json', 'md']
